@@ -32,6 +32,9 @@ COPY --from=build /app/packages/core/build/ packages/core/build/
 COPY --from=build /app/apps/frontend/build/ apps/frontend/build/
 COPY apps/backend/ apps/backend/
 
+RUN chmod +x apps/backend/docker-entrypoint.sh
+
 ENV PORT=80
 EXPOSE 80
+ENTRYPOINT ["apps/backend/docker-entrypoint.sh"]
 CMD ["node", "apps/backend/express.js"]
