@@ -6,5 +6,6 @@ const server = app.listen(port, "0.0.0.0", () => {
 });
 
 process.on("SIGTERM", () => {
+  console.log("SIGTERM received. Shutting down gracefully.");
   server.close(() => process.exit(0));
 });
