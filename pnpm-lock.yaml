@@ -109,7 +109,7 @@ importers:
         specifier: catalog:default
         version: 30.0.1(@noble/hashes@1.8.0)
       supertest:
-        specifier: ^7.3.1
+        specifier: 7.3.1
         version: 7.3.1
       vitest:
         specifier: catalog:default

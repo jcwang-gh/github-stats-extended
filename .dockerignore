@@ -2,6 +2,6 @@
 **/build
 **/node_modules
 **/tests
-**/turbo
+**/.turbo
 
 **/.env

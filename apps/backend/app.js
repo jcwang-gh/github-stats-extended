@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 app.use(
   "/frontend",
   express.static(path.join(import.meta.dirname, "../frontend/build"), {
-    maxAge: "3600000",
+    maxAge: 3600000,
   }),
 );
 

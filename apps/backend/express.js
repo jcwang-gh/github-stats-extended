@@ -5,7 +5,10 @@ const server = app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
 });
 
-process.on("SIGTERM", () => {
-  console.log("SIGTERM received. Shutting down gracefully.");
+const shutdown = (signal) => {
+  console.log(`${signal} received. Shutting down gracefully.`);
   server.close(() => process.exit(0));
-});
+  setTimeout(() => process.exit(1), 20_000).unref();
+};
+process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);

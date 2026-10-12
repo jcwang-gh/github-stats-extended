@@ -1,4 +1,4 @@
-name: Publish core package to npm
+name: Publish core package to npm, Docker image to GitHub Container Registry
 on:
   workflow_dispatch:
   release:
