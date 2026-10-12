@@ -248,6 +248,8 @@ GitHub Stats Extended provides several environment variables that can be used to
   </tbody>
 </table>
 
+See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
+
 :::caution[Warning]
 On Vercel, remember to redeploy your instance after making any changes to the environment variables so that the updates take effect. The changes will not be applied to the previous deployments.
 :::
