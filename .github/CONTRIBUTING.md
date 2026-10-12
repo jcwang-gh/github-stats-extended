@@ -36,7 +36,9 @@ pnpm run dev:backend
 
 ### Environment Variables
 
-To successfully render stats cards, your test server needs a valid [Personal Access Token](https://github-stats-extended.vercel.app/frontend/docs/deploy/#first-step-get-your-personal-access-token-pat). Set this PAT and any of the [other, optional environment variables](https://github-stats-extended.vercel.app/frontend/docs/deploy/#available-environment-variables) in [`apps/backend/.env`](./apps/backend/.env).
+To successfully render stats cards, your test server needs a valid [Personal Access Token](https://github-stats-extended.vercel.app/frontend/docs/deploy/#first-step-get-your-personal-access-token-pat). Set this PAT and any of the [other, optional environment variables](https://github-stats-extended.vercel.app/frontend/docs/deploy/#available-environment-variables) via `apps/backend/.env`: Copy the template `apps/backend/.env.example` to `apps/backend/.env` and fill in your token.
+
+If you need the frontend's OAuth login flow to work locally, replace the `__OAUTH_CLIENT_ID__` placeholder in `apps/frontend/src/constants.ts` with your OAuth App's client ID. Take care not to commit this change.
 
 ## Tests
 
