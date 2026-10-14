@@ -1,4 +1,4 @@
-import { beforeAll, bench, describe, vi } from "vitest";
+import { beforeAll, test, vi } from "vitest";
 
 import { createRequestResponse, data_stats, mockGraphQL } from "../utils.js";
 
@@ -15,13 +15,9 @@ beforeAll(async () => {
   mockGraphQL(data_stats);
 });
 
-describe("bench /api", () => {
-  bench(
-    "base",
-    async () => {
-      const { req, res } = createRequestResponse("/api?username=anuraghazra");
-      await router(req, res);
-    },
-    { warmupIterations: 50 },
-  );
+test("bench /api", async ({ bench }) => {
+  await bench("base", async () => {
+    const { req, res } = createRequestResponse("/api?username=anuraghazra");
+    await router(req, res);
+  }).run({ warmupIterations: 50 });
 });
