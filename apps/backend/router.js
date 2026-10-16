@@ -1,7 +1,7 @@
 import {
-  api,
   gist,
   pin,
+  stats,
   topLangs,
   wakatime,
 } from "@stats-organization/github-readme-stats-core";
@@ -70,7 +70,7 @@ export default async (req, res) => {
       result = getGuardResult(req.query, "username", req.query.username);
       if (!result) {
         const userPat = await getUserPat(req.query.username);
-        result = await api(req.query, userPat);
+        result = await stats(req.query, userPat);
       }
       if (result.status === "error - temporary") {
         setErrorCacheHeaders(res);

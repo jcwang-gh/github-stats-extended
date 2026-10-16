@@ -1,5 +1,4 @@
 import {
-  api,
   gist,
   pin,
   stats,
@@ -12,7 +11,7 @@ import type { ApiResult } from "@stats-organization/github-readme-stats-core";
 type CardHandler = (query: Record<string, string>) => Promise<ApiResult>;
 
 const CARD_HANDLERS: Record<string, CardHandler | undefined> = {
-  "/api": api,
+  "/api": stats,
   "/api/stats": stats,
   "/api/gist": gist,
   "/api/pin": pin as CardHandler,
