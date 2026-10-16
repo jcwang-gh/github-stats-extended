@@ -65,7 +65,8 @@ export default async (req, res) => {
   let result;
 
   switch (url.pathname) {
-    case "/api": {
+    case "/api":
+    case "/api/stats": {
       result = getGuardResult(req.query, "username", req.query.username);
       if (!result) {
         const userPat = await getUserPat(req.query.username);
