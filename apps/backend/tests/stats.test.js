@@ -43,7 +43,7 @@ beforeEach(() => {
   delete process.env.CACHE_SECONDS;
 });
 
-describe("Test /api backend routing", () => {
+describe.each(["/api", "/api/stats"])("Test %s backend routing", (path) => {
   it("happy path should pass query params and user PAT, respond with stats content and persist request", async () => {
     getUserAccessByNameMock.mockResolvedValue({ token: "user-pat" });
     statsMock.mockResolvedValue({
@@ -52,7 +52,7 @@ describe("Test /api backend routing", () => {
     });
 
     const res = await supertest(app)
-      .get("/api?username=anuraghazra&theme=dark&hide=issues,prs,contribs")
+      .get(`${path}?username=anuraghazra&theme=dark&hide=issues,prs,contribs`)
       .expect("Cache-Control", defaultCacheHeader)
       .expect("Content-Type", "image/svg+xml")
       .expect(200);
@@ -77,7 +77,7 @@ describe("Test /api backend routing", () => {
     });
 
     const res = await supertest(app)
-      .get("/api?username=anuraghazra")
+      .get(`${path}?username=anuraghazra`)
       .expect("Cache-Control", errorCacheHeader)
       .expect("Content-Type", "image/svg+xml")
       .expect(200);
@@ -100,7 +100,7 @@ describe("Test /api backend routing", () => {
     });
 
     const res = await supertest(app)
-      .get("/api?username=anuraghazra")
+      .get(`${path}?username=anuraghazra`)
       .expect("Cache-Control", defaultCacheHeader)
       .expect("Content-Type", "image/svg+xml")
       .expect(200);
@@ -118,7 +118,7 @@ describe("Test /api backend routing", () => {
 
   it("should reject blacklisted usernames before calling core logic", async () => {
     const res = await supertest(app)
-      .get("/api?username=renovate-bot")
+      .get(`${path}?username=renovate-bot`)
       .expect("Cache-Control", defaultCacheHeader)
       .expect("Content-Type", "image/svg+xml")
       .expect(200);
@@ -135,7 +135,7 @@ describe("Test /api backend routing", () => {
     getConfigMock.mockReturnValue({ whitelist: ["allowed-user"] });
 
     const res = await supertest(app)
-      .get("/api?username=blocked-user")
+      .get(`${path}?username=blocked-user`)
       .expect("Cache-Control", defaultCacheHeader)
       .expect("Content-Type", "image/svg+xml")
       .expect(200);
