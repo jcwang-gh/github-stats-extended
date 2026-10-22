@@ -29,6 +29,4 @@ trustPolicy: no-downgrade
 strictPeerDependencies: true
 engineStrict: true
 allowBuilds:
-  "@swc/core": true
-  esbuild: true
   unrs-resolver: true
